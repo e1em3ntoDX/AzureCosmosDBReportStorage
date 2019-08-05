@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - DXCosmosExample</title>
+
+    <environment include="Development">
+        <link rel="stylesheet" href="~/node_modules/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="~/css/site.css" />
+    </environment>
+    <environment include="Development">
+        <script src="~/node_modules/jquery/dist/jquery.js"></script>
+        <script src="~/node_modules/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+    </environment>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">WebApplication3</a>
+                <div style="float:right; padding: 15px 15px;">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <div style="display: inline-block">Hello @User.Identity.Name! / </div>
+                        <a asp-controller="Account" asp-action="Logout">Log Out</a>
+                    }
+                    else
+                    {
+                        <div style="display:inline-block">Login as </div>
+                        <a asp-controller="Account" asp-action="LoginAsUser">user</a>
+                        <div style="display:inline-block">/</div>
+                        <a asp-controller="Account" asp-action="LoginAsAdmin">admin</a>
+                    }
+                </div>
+
+            </div>
+        </nav>
+    </header>
+    <div class="container-fluid body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; 2018 - DXCosmosExample</p>
+        </footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,40 @@
+﻿@model DXCosmosExample.Models.HomeModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+<div class="container">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Report Name</th>
+                @if(User.Identity.IsAuthenticated) {
+                    <th width="100px">Preview</th>
+                }
+                @if(User.IsInRole("Admin")) {
+                    <th width="100px">Edit</th>
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var item in Model.Reports) {
+                <tr>
+                    <td>@item</td>
+                    @if(User.Identity.IsAuthenticated) {
+                        <td width="100px">
+                            <a href="Home/Viewer/@item">Preview</a>
+                        </td>
+                    }
+                    @if(User.IsInRole("Admin")) {
+                        <td width="100px">
+                            <a href="Home/Designer/@item">Edit</a>
+                        </td>
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+    @if(User.IsInRole("Admin")) {
+        <a href="Home/Designer">Create</a>
+    }
+</div>
+

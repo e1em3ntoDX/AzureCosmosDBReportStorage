@@ -1,0 +1,41 @@
+﻿@model DXCosmosExample.Models.ReportModel
+@{
+    ViewData["Title"] = "Report Designer";
+}
+<h2>@ViewData["Title"].</h2>
+<h3>@ViewData["Message"]</h3>
+<link href="~/node_modules/jquery-ui-dist/jquery-ui.min.css" rel="stylesheet" />
+
+<script src="~/node_modules/jquery-ui-dist/jquery-ui.min.js"></script>
+
+<script src="~/node_modules/knockout/build/output/knockout-latest.js"></script>
+
+<script src="~/node_modules/devextreme/dist/js/dx.all.js"></script>
+<link href="~/node_modules/devextreme/dist/css/dx.common.css" rel="stylesheet" />
+<link href="~/node_modules/devextreme/dist/css/dx.light.css" rel="stylesheet" />
+
+<!-- Optionally (for intelligent code completion in the Expression Editor and Filter Editor) -->
+@*<script src="~/node_modules/ace-builds/src/ace.js"></script>
+    <script src="~/node_modules/ace-builds/src/ext-language_tools.js"></script>
+    <script src="~/node_modules/ace-builds/src/snippets/text.js"></script>*@
+<!--  -->
+<!-- If your application contains the Report Designer or both the Report Designer and Document Viewer -->
+<script src="~/node_modules/@@devexpress/analytics-core/dist/js/dx-analytics-core.js"></script>
+<script src="~/node_modules/@@devexpress/analytics-core/dist/js/dx-querybuilder.js"></script>
+<script src="~/node_modules/devexpress-reporting/dist/js/dx-webdocumentviewer.js"></script>
+<script src="~/node_modules/devexpress-reporting/dist/js/dx-reportdesigner.js"></script>
+<link href="~/node_modules/@@devexpress/analytics-core/dist/css/dx-analytics.common.css" rel="stylesheet" />
+<link href="~/node_modules/@@devexpress/analytics-core/dist/css/dx-analytics.light.css" rel="stylesheet" />
+<link href="~/node_modules/@@devexpress/analytics-core/dist/css/dx-querybuilder.css" rel="stylesheet" />
+<link href="~/node_modules/devexpress-reporting/dist/css/dx-webdocumentviewer.css" rel="stylesheet" />
+<link href="~/node_modules/devexpress-reporting/dist/css/dx-reportdesigner.css" rel="stylesheet" />
+
+@{
+    var designer = Html.DevExpress().ReportDesigner("ReportDesigner1").Height("900px");
+    if(string.IsNullOrEmpty(Model.ReportUrl)) {
+        designer.Bind(Model.Report);
+    } else {
+        designer.Bind(Model.ReportUrl);
+    }
+}
+@designer

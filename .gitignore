@@ -1,0 +1,5 @@
+DXCosmosExample/bin/
+*.user
+DXCosmosExample/node_modules/
+.vs/
+DXCosmosExample/obj/
